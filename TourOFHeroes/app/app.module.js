@@ -9,12 +9,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
 const platform_browser_1 = require("@angular/platform-browser");
 const forms_1 = require("@angular/forms");
+const http_1 = require("@angular/http");
+const app_routing_module_1 = require("./app-routing.module");
 const app_component_1 = require("./app.component");
 const dashboard_component_1 = require("./dashboard.component");
-const hero_detail_component_1 = require("./hero-detail.component");
 const heroes_component_1 = require("./heroes.component");
+const hero_detail_component_1 = require("./hero-detail.component");
 const hero_service_1 = require("./hero.service");
-const app_routing_module_1 = require("./app-routing.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -22,13 +23,15 @@ AppModule = __decorate([
         imports: [
             platform_browser_1.BrowserModule,
             forms_1.FormsModule,
+            http_1.HttpModule,
+            //InMemoryWebApiModule.forRoot(InMemoryDataService),
             app_routing_module_1.AppRoutingModule
         ],
         declarations: [
             app_component_1.AppComponent,
             dashboard_component_1.DashboardComponent,
             hero_detail_component_1.HeroDetailComponent,
-            heroes_component_1.HeroesComponent
+            heroes_component_1.HeroesComponent,
         ],
         providers: [hero_service_1.HeroService],
         bootstrap: [app_component_1.AppComponent]
