@@ -6,8 +6,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const core_1 = require("@angular/core");
 const mock_heroes_1 = require("./mock-heroes");
+const core_1 = require("@angular/core");
 let HeroService = class HeroService {
     getHeroes() {
         return Promise.resolve(mock_heroes_1.HEROES);
@@ -17,6 +17,10 @@ let HeroService = class HeroService {
             // Simulate server latency with 2 second delay
             setTimeout(() => resolve(this.getHeroes()), 2000);
         });
+    }
+    getHero(id) {
+        return this.getHeroes()
+            .then(heroes => heroes.find(hero => hero.id === id));
     }
 };
 HeroService = __decorate([

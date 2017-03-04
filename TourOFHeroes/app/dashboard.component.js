@@ -9,36 +9,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-require("rxjs/add/operator/switchMap");
 const core_1 = require("@angular/core");
-const router_1 = require("@angular/router");
-const common_1 = require("@angular/common");
 const hero_service_1 = require("./hero.service");
-let HeroDetailComponent = class HeroDetailComponent {
-    constructor(heroService, route, location) {
+let DashboardComponent = class DashboardComponent {
+    constructor(heroService) {
         this.heroService = heroService;
-        this.route = route;
-        this.location = location;
+        this.heroes = [];
     }
     ngOnInit() {
-        this.route.params
-            .switchMap((params) => this.heroService.getHero(+params['id']))
-            .subscribe(hero => this.hero = hero);
-    }
-    goBack() {
-        this.location.back();
+        this.heroService.getHeroes()
+            .then(heroes => this.heroes = heroes.slice(1, 5));
     }
 };
-HeroDetailComponent = __decorate([
+DashboardComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
-        selector: 'my-hero-detail',
-        templateUrl: './hero-detail.component.html',
-        styleUrls: ['./hero-detail.component.css']
+        selector: 'my-dashboard',
+        templateUrl: './dashboard.component.html',
+        styleUrls: ['./dashboard.component.css']
     }),
-    __metadata("design:paramtypes", [hero_service_1.HeroService,
-        router_1.ActivatedRoute,
-        common_1.Location])
-], HeroDetailComponent);
-exports.HeroDetailComponent = HeroDetailComponent;
-//# sourceMappingURL=hero-detail.component.js.map
+    __metadata("design:paramtypes", [hero_service_1.HeroService])
+], DashboardComponent);
+exports.DashboardComponent = DashboardComponent;
+//# sourceMappingURL=dashboard.component.js.map
